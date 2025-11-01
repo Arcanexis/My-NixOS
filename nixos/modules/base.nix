@@ -7,6 +7,9 @@
 {
   #启动flake等'实验性'功能
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  
+  #允许非自由软件
+  nixpkgs.config.allowUnfree = true;
 
   # Bootloader
   boot.loader = { 
@@ -125,9 +128,6 @@
 
   # Install firefox.
   programs.firefox.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # 系统基础包
   environment.systemPackages = with pkgs; [

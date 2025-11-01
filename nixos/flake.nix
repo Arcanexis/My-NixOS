@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    #下面是noctalia-shell
+    #noctalia-shell(niri)
     quickshell = {
       url = "github:outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,12 +13,6 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.quickshell.follows = "quickshell";  # Use same quickshell version
-    };
-
-    #下面的是caelestia主题
-    caelestia-shell = {
-      url = "github:caelestia-dots/shell";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
@@ -42,9 +36,7 @@
         ./modules/desk-enviroment/deskbase.nix
         ./modules/desk-enviroment/niri.nix
         #./modules/desk-enviroment/hyprland.nix
-         #shell主题选择二选一
-        #./modules/desk-enviroment/noctalia.nix
-        ./modules/desk-enviroment/caelestia.nix
+        ./modules/desk-enviroment/noctalia.nix
 
          #开发模块
         ./modules/development.nix

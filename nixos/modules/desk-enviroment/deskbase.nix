@@ -23,7 +23,7 @@
     # 办公
     #libreoffice
     obsidian
-    
+ 
     # 图形工具
     
     # 系统工具
