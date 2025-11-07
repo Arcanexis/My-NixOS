@@ -86,11 +86,13 @@
     LC_PAPER = "zh_CN.UTF-8";
     LC_TELEPHONE = "zh_CN.UTF-8";
     LC_TIME = "zh_CN.UTF-8";
+    LC_MESSAGES = "en_US.UTF-8";
+
   };
 
   # Configure keymap in X11
   services.xserver.xkb = {
-    layout = "cn";
+    layout = "us";
     variant = "";
   };
 
@@ -138,6 +140,7 @@
   alacritty
   tree
   killall
+  lsof
   ];
 
   # 启用 zsh,主题用p10k,先装oh-my-zsh

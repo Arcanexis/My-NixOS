@@ -22,7 +22,7 @@
     
     # 办公
     onlyoffice-desktopeditors 
-    #libreoffice
+    feishu 
     obsidian
  
     # 图形工具

@@ -5,6 +5,7 @@
       pkgs.niri
       pkgs.fuzzel
       pkgs.xwayland-satellite #启用xwayland
+      pkgs.kdePackages.dolphin
     ];
 
 }
