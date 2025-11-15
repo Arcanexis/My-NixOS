@@ -90,6 +90,15 @@
 
   };
 
+  # 输入法配置
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5.addons = with pkgs.qt6Packages; [
+      fcitx5-chinese-addons
+    ];
+  };
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -115,17 +124,32 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # 多用户配置
   users.users.arcane = {
     isNormalUser = true;
     description = "Arcane";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
+    extraGroups = [ "networkmanager" "wheel" "docker"];
+  };
+
+  users.users.arcanexis = {
+    isNormalUser = true;
+    description = "Arcanexis";
+    extraGroups = [ "networkmanager" "wheel" "docker"];
+  };
+
+  users.users.jerry = {
+    isNormalUser = true;
+    description = "Jerry";
+    extraGroups = [ "networkmanager" "wheel" "docker"];
+    #shell = pkgs.zsh;
+  };
+
+  users.users.learner = {
+    isNormalUser = true;
+    description = "Learner";
+    extraGroups = [ "networkmanager" "wheel" "docker"];
+    #shell = pkgs.zsh;
   };
 
   # Install firefox.
@@ -139,39 +163,37 @@
   kitty
   alacritty
   tree
+  btop
+  yazi
   killall
   lsof
+  mesa-demos
+  docker
+  docker-compose
+  git
+  helix 
   ];
 
-  # 启用 zsh,主题用p10k,先装oh-my-zsh
-  # 重新设置主题  p10k configure
-  programs.zsh.enable = true;
+ # 电源管理服务
+  services.upower.enable = true;
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  # 蓝牙服务
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
-  # List services that you want to enable:
+  # 电源配置服务
+  services.power-profiles-daemon.enable = true;
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  # 启用系统级别docker（推荐）
+  virtualisation.docker = {
+    enable = true;
+  };
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  #system.stateVersion = "25.05"; # Did you read the comment?
+  #设置docker网络代理
+  systemd.services.docker.serviceConfig.Environment = [
+  "HTTP_PROXY=http://127.0.0.1:7897"
+  "HTTPS_PROXY=http://127.0.0.1:7897"
+  "NO_PROXY=localhost,127.0.0.1,.local,/var/run/docker.sock"
+];
 
 }

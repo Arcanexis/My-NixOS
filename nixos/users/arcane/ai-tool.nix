@@ -2,7 +2,7 @@
 
 {  
 
-  environment.systemPackages = [
+  home.packages = [
     pkgs.opencode
     pkgs.cherry-studio
     pkgs.lmstudio
