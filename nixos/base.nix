@@ -161,7 +161,12 @@
   yazi
   killall
   lsof
-  mesa-demos
+  pciutils    # lspci
+  usbutils    # lsusb
+  lshw        # 硬件信息
+  inxi        # 系统信息工具
+  mesa-demos  # glxinfo
+  iproute2
   docker
   docker-compose
   ];
@@ -192,7 +197,5 @@
     enable = true;
     enable32Bit = true; #启用32位驱动支持
   };
-
-  services.xserver.videoDrivers = ["amdgpu"];
 
 }

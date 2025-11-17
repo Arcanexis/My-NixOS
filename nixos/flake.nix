@@ -62,6 +62,7 @@
                 imports = [
                   ./users/arcane/arcane-base.nix
                   ./users/arcane/development.nix
+                  ./users/arcane/ai.nix
                   #./users/arcane/noctalia.nix
                   ./users/arcane/DankMaterialShell.nix
                   ];
@@ -87,7 +88,7 @@
                 programs.home-manager.enable = true;
 
                 imports = [
-                   #./users/sandbox/sandbox-base.nix
+                   ./users/sandbox/sandbox-base.nix
                    #./share/DankMaterialShell.nix
                   ];
                 };

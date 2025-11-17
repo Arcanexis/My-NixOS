@@ -22,8 +22,7 @@
     distrobox #arch ubuntu (不影响nixos系统环境）   
  
     # 数据库
-    #sqlite
-    #postgresql
+    postgresql
     
     # 终端工具相关
     #tmux

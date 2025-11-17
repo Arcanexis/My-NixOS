@@ -37,7 +37,7 @@
     fontconfig = {
       enable = true;
       
-      # 设置默认字体优先级
+       # 设置默认字体优先级
       defaultFonts = {
         sansSerif = [ "Noto Sans" "Noto Sans CJK SC" "DejaVu Sans" ];
         serif = [ "Noto Serif" "Noto Serif CJK SC" "DejaVu Serif" ];

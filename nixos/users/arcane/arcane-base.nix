@@ -11,9 +11,10 @@
     # 网络
     clash-verge-rev
     
-    # 通讯
+    # 通讯信息
      wechat
      qq
+     folo
 
      # 娱乐
      bilibili
@@ -23,6 +24,9 @@
     onlyoffice-desktopeditors 
     feishu 
     obsidian
+ 
+    # 下载器
+    motrix
   ];
 
 }
