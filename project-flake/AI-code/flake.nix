@@ -30,7 +30,7 @@
             fi
 
             echo "环境就绪"
-            export PATH="$HOME/AI/AI-code/npm-pakages/node_modules/.bin:$PATH" 
+            export PATH="$PWD/npm-pakages/node_modules/.bin:$PATH" 
           '';
         };
       }
