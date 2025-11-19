@@ -130,6 +130,7 @@
     isNormalUser = true;
     description = "Arcane";
     extraGroups = [ "networkmanager" "wheel" "docker"];
+    shell = pkgs.zsh;
   };
 
   users.users.jerry = {
