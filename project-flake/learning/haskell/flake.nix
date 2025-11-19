@@ -22,7 +22,7 @@
   
      shellHook = ''
           echo "环境就绪"
-          exit  #退出bash
+          exec zsh  #启动zsh
         '';
       };
     };

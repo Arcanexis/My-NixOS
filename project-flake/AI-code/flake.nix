@@ -25,7 +25,7 @@
 
           echo "环境就绪"
           export PATH="$PWD/npm-pakages/node_modules/.bin:$PATH"
-          exit  #退出bash
+          exec zsh  #启动zsh
         '';
       };
     };
