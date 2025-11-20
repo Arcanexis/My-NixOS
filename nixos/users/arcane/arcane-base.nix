@@ -8,9 +8,6 @@
     chromium
     google-chrome
 
-    # 网络
-    clash-verge-rev
-    
     # 通讯信息
      wechat
      qq

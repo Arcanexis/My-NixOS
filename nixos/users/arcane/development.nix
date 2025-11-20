@@ -9,10 +9,6 @@
     # 编辑器 & IDE
     zed-editor #rust写的下一代代码编辑器
 
-    #容器 
-    docker
-    docker-compose
-   
     #容器支持
     distrobox #arch ubuntu (不影响nixos系统环境）   
  

@@ -7,6 +7,7 @@
   neovim
   appimage-run
   niri
+  clash-verge-rev
   ];
 
    # 完整的字体配置
@@ -81,6 +82,7 @@
     QT_IM_MODULE = "fcitx";
     XMODIFIERS = "@im=fcitx";
     SDL_IM_MODULE = "fcitx";
-  }; 
+  };
+
 
 }

@@ -168,6 +168,9 @@
   inxi        # 系统信息工具
   mesa-demos  # glxinfo
   iproute2
+
+  docker
+  docker-compose
   ];
 
  # 电源管理服务
@@ -182,7 +185,7 @@
 
   # 启用系统级别docker（推荐）
   virtualisation.docker = {
-    enable = true;
+    enable = false;   #禁止自启动，手动先启动clash
   };
 
   #设置docker网络代理
