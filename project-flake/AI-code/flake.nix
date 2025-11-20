@@ -23,9 +23,8 @@
             (cd npm-pakages && npm install)
           fi
 
-          echo "环境就绪"
+          echo "环境就绪" && zsh
           export PATH="$PWD/npm-pakages/node_modules/.bin:$PATH"
-          exec zsh  #启动zsh
         '';
       };
     };

@@ -30,9 +30,7 @@
           ];
           
           shellHook = ''
-            echo "✅ 量化环境就绪！"
-            echo "🚀 启动 Jupyter: jupyter lab"
-            exec zsh #启动zsh
+            echo "✅ 量化环境就绪！" && zsh
           '';
         };
       }
