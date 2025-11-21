@@ -14,8 +14,14 @@
       devShells.${system}.default = pkgs.mkShell {
         packages = with pkgs; [
           nodejs_22
-          python3
-        ];
+
+          (python311.withPackages (ps: with ps; [
+          numpy 
+          scipy
+          matplotlib
+         ]))
+       
+       ];
 
         shellHook = ''
           if [ ! -d "npm-pakages/node_modules" ] && [ -f "npm-pakages/package.json" ]; then
@@ -23,7 +29,7 @@
             (cd npm-pakages && npm install)
           fi
 
-          echo "环境就绪" && zsh
+          echo "环境就绪"
           export PATH="$PWD/npm-pakages/node_modules/.bin:$PATH"
         '';
       };

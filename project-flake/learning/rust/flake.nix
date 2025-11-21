@@ -26,7 +26,7 @@
         ];
 
       shellHook = ''
-          echo "环境就绪" && zsh
+          echo "环境就绪"
         '';
       };
     };
