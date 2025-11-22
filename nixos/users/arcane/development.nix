@@ -11,9 +11,6 @@
 
     #容器支持
     distrobox #arch ubuntu (不影响nixos系统环境）   
- 
-    # 数据库
-    postgresql
   ];
 
   # 开发环境变量

@@ -165,6 +165,8 @@
   # 电源配置服务
   services.power-profiles-daemon.enable = true;
 
+
+# 以下为系统级开发环境
   # 启用系统级别docker（推荐）
   virtualisation.docker = {
     enable = true;
@@ -180,5 +182,16 @@
   "HTTPS_PROXY=http://127.0.0.1:7897"
   "NO_PROXY=localhost,127.0.0.1,.local,/var/run/docker.sock"
 ];
+
+  # 启动数据库
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql_16;
+    ensureDatabases = [ "arcanedatabase" ];
+    authentication = pkgs.lib.mkOverride 10 ''
+      # 类型 数据库 用户 认证方式
+      local all      all     trust
+    '';
+  };
 
 }
