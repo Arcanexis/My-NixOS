@@ -6,7 +6,12 @@
   home.packages = with pkgs; [
     chromium
 
-    python3
+    (python311.withPackages (ps: with ps; [
+    numpy
+    requests
+    jupyterlab
+   ]))
+
     ghc
     ghcid
   ];

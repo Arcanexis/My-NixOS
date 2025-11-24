@@ -10,14 +10,9 @@
     };
 
     #noctalia-shell(niri)
-    quickshell = {
-      url = "github:outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.quickshell.follows = "quickshell"; 
     };
     
     # DankMaterialShell(niri) 
@@ -77,6 +72,7 @@
 
                 imports = [
                   ./users/jerry/jerry-base.nix
+                  ./users/arcane/DankMaterialShell.nix
                  ];
                };
 
@@ -89,7 +85,6 @@
 
                 imports = [
                    ./users/sandbox/sandbox-base.nix
-                   #./share/DankMaterialShell.nix
                   ];
                 };
 
