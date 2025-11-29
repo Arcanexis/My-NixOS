@@ -7,6 +7,7 @@
     # 浏览器
     chromium
     google-chrome
+    tor-browser
 
     # 通讯信息
      wechat
