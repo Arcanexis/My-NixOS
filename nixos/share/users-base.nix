@@ -62,10 +62,11 @@
 
   # 启用 zsh,主题用p10k,先装oh-my-zsh
   # 重新设置主题  p10k configure
-  programs.zsh.enable = true;
+   programs.zsh = {
+    enable = true;
+  };
 
   # 启用 Steam
-
   # steam需要系统级别配置
   programs.steam = {
     enable = true;

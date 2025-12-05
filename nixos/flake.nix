@@ -46,6 +46,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = { inherit inputs; };
+              backupFileExtension = "backup";
               
               # Arcane 主用户 —— AI使用和研究，成为AI超级个体
               users.arcane = {

@@ -34,4 +34,21 @@
     };
   };
 
+ # 启用 direnv 和 nix-direnv
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+    enableZshIntegration = true;
+  };
+
+  # 关键：即使系统安装了 zsh，这里也必须启用
+  # 这样 Home Manager 才有权限去管理 ~/.zshrc 并写入 direnv 的 hook
+  programs.zsh = {
+    enable = true;
+    # 你可以在这里继续添加用户级的 zsh 配置，比如 alias, plugins 等
+    # shellAliases = {
+    #   ll = "ls -l";
+    # };
+  };
+
 }
