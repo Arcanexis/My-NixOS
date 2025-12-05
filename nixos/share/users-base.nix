@@ -17,6 +17,11 @@
   xdg-desktop-portal-gtk       # 文件选择器等基础功能
   ];
 
+  # 端口与你 Clash 配置文件中的端口一致,大部分应用都走代理
+  networking.proxy.default = "http://127.0.0.1:7897";
+  # 设置不走代理的地址 (防止系统服务连接本地失败)
+  networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
    # 完整的字体配置
   fonts = {
     enableDefaultPackages = true;
