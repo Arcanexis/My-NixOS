@@ -12,6 +12,7 @@
     # 通讯信息
      wechat
      qq
+     discord
 
      # 娱乐
      bilibili
