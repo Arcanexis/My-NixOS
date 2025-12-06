@@ -275,8 +275,8 @@ spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
 spawn-at-startup "clash-verge"
 spawn-sh-at-startup "sleep 20 && google-chrome-stable"
-spawn-sh-at-startup "slepp 21 cherry-studio"
-spawn-sh-at-startup "sleep 23 obsidian"
+spawn-sh-at-startup "slepp 21 && cherry-studio"
+spawn-sh-at-startup "sleep 23 && obsidian"
 spawn-sh-at-startup "sleep 30 && discord"
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
