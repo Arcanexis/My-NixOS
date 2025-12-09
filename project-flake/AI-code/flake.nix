@@ -46,13 +46,6 @@
         };
 
         shellHook = ''
-          # --- Node.js 部分 (保持你原有的逻辑) ---
-          if [ ! -d "pnpm-packages/node_modules" ] && [ -f "pnpm-packages/package.json" ]; then
-            echo "正在下载npm包..."
-            (cd pnpm-packages && pnpm install)
-          fi
-          export PATH="$PWD/pnpm-packages/node_modules/.bin:$PATH"
-
           # --- Python/UV 部分 ---
           # 1. 如果没有 pyproject.toml，初始化它
           if [ ! -f "pyproject.toml" ]; then
