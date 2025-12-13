@@ -52,7 +52,7 @@
               users.arcane = {
                 home.username = "arcane";
                 home.homeDirectory = "/home/arcane";
-                home.stateVersion = "25.05";
+                home.stateVersion = "25.11";
                 programs.home-manager.enable = true;
 
                 imports = [
@@ -68,7 +68,7 @@
               users.jerry = {
                 home.username = "jerry";
                 home.homeDirectory = "/home/jerry";
-                home.stateVersion = "25.05"; 
+                home.stateVersion = "25.11"; 
                 programs.home-manager.enable = true;
 
                 imports = [
@@ -81,7 +81,7 @@
               users.sandbox = {
                 home.username = "sandbox";
                 home.homeDirectory = "/home/sandbox";
-                home.stateVersion = "25.05";
+                home.stateVersion = "25.11";
                 programs.home-manager.enable = true;
 
                 imports = [

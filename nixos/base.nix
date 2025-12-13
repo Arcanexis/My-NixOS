@@ -45,7 +45,7 @@
 
   # 系统基本信息
   networking.hostName = "nixos"; 
-  system.stateVersion = "25.05"; 
+  system.stateVersion = "25.11"; 
 
   # Enable networking
   networking.networkmanager.enable = true;

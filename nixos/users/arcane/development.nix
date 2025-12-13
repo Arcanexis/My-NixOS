@@ -11,7 +11,11 @@
     antigravity #谷歌反重力编辑器
 
     #容器支持
-    distrobox #arch ubuntu (不影响nixos系统环境）   
+    distrobox #arch ubuntu (不影响nixos系统环境）  
+
+    #安卓工具
+    android-tools
+    scrcpy 
   ];
 
   # 开发环境变量

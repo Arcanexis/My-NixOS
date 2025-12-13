@@ -10,6 +10,8 @@
   niri
   clash-verge-rev
   htop
+  unzip
+  unar
 
   xdg-utils                    # 提供 xdg-open 等命令
   xdg-desktop-portal           # 核心门户服务
