@@ -23,17 +23,6 @@
       device = "nodev";
       efiSupport = true;
       useOSProber = true;
-      
-      # 手动添加 Arch Linux 引导条目
-      extraEntries = ''
-        menuentry "Windows" {
-          insmod part_gpt
-          insmod fat
-          insmod chain
-          search --no-floppy --fs-uuid --set=root 729C-E7C6
-          chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-        }
-      '';
     };
   };
 
