@@ -268,16 +268,21 @@ layout {
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
+
+// 导入环境变量到 D-Bus 和 systemd，确保 xdg-desktop-portal 正常工作
+spawn-sh-at-startup "dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP"
+
 spawn-at-startup "fcitx5"
 //spawn-at-startup "noctalia-shell"
 spawn-at-startup "dms" "run"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
 spawn-at-startup "clash-verge"
-spawn-sh-at-startup "sleep 20 && google-chrome-stable"
-spawn-sh-at-startup "sleep 24 && cherry-studio"
-spawn-sh-at-startup "sleep 22 && obsidian"
-spawn-sh-at-startup "sleep 30 && discord"
+spawn-at-startup "obsidian"
+spawn-sh-at-startup "zeditor"
+spawn-at-startup "cherry-studio"
+spawn-at-startup "steam"
+spawn-at-startup "discord"
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 
@@ -331,7 +336,7 @@ window-rule {
     match app-id="bilibili$"
     match app-id="firefox$"
     match app-id="google-chrome$"
-    match app-id="cherry-studio"
+    match app-id="cherry-studio$"
     match app-id="discord"
     match app-id="zed"
     match app-id="chromium"
