@@ -16,6 +16,7 @@
           uv #管理python解释器及python包
           pnpm_9
           nodejs_22
+          texlive.combined.scheme-full #latex
           pkg-config
           gcc
         ];

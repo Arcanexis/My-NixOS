@@ -25,6 +25,7 @@
             uv #使用uv管理python解释器版本及python包
             jupyter
             nodejs_22
+            texlive.combined.scheme-full #latex
           ];
 
           env = {
