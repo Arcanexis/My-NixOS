@@ -7,11 +7,15 @@
     git
     
     # 编辑器 & IDE
+    vscode
     zed-editor #rust写的下一代代码编辑器
     antigravity #谷歌反重力编辑器
 
     #容器支持
     distrobox #arch ubuntu (不影响nixos系统环境）  
+
+    #数据库可视化
+    dbeaver-bin
 
     #安卓工具
     android-tools

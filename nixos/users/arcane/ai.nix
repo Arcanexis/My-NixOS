@@ -6,7 +6,6 @@
     cherry-studio
     kiro
     code-cursor
-    vscode
     lmstudio
     ollama
     onnxruntime

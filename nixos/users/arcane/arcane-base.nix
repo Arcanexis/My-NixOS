@@ -20,6 +20,7 @@
     # 办公
     onlyoffice-desktopeditors
     wpsoffice-cn 
+    libreoffice
     feishu 
     obsidian
  
