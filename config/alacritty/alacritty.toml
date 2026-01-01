@@ -1,3 +1,7 @@
+[general]
+#import = ["./dank-theme.toml"]
+import = ["./catppuccin-mocha.toml"]
+
 [terminal.shell]
 program = "/run/current-system/sw/bin/zsh"
 # args = ["--login"]  # 如果需要
