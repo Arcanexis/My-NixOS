@@ -26,10 +26,8 @@
     };
   };
 
-  #更换国内源
   nix.settings.substituters = [
-    "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-    "https://cache.nixos.org"  # 保留官方源作为备用
+    "https://cache.nixos.org"  
   ];
 
   # 系统基本信息
