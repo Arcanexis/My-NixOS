@@ -53,8 +53,8 @@
                   ./users/arcaneorion/arcaneorion-base.nix
                   ./users/arcaneorion/development.nix
                   ./users/arcaneorion/ai.nix
-                  #./users/arcaneorion/noctalia.nix
-                  ./users/arcaneorion/DankMaterialShell.nix
+                  ./users/arcaneorion/noctalia.nix
+                  #./users/arcaneorion/DankMaterialShell.nix
                   ];
                 };
 
