@@ -57,6 +57,15 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
+    history = {
+    size = 100000;
+    save = 100000;
+    path = "$HOME/.zsh_history";
+
+    share = true;
+    extended = true;
+  };
+
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" ];
