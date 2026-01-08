@@ -1,0 +1,14 @@
+{
+  "sensitivity": 1.1,
+  "rotationSpeed": 0.8,
+  "barWidth": 0.7,
+  "ringOpacity": 0.6000000000000001,
+  "bloomIntensity": 0.7000000000000001,
+  "visualizationMode": 3,
+  "waveThickness": 1,
+  "innerDiameter": 0.8500000000000001,
+  "fadeWhenIdle": true,
+  "useCustomColors": true,
+  "customPrimaryColor": "#6750a4",
+  "customSecondaryColor": "#ffa500"
+}

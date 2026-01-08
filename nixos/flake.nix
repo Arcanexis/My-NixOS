@@ -42,7 +42,7 @@
               extraSpecialArgs = { inherit inputs; };
               backupFileExtension = "backup";
               
-              # ArcaneOrion 主用户 —— AI使用和研究，成为AI超级个体
+              # ArcaneOrion 主用户
               users.arcaneorion = {
                 home.username = "arcaneorion";
                 home.homeDirectory = "/home/arcaneorion";
