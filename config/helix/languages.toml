@@ -1,0 +1,47 @@
+# ---在flake.nix安装pyright rust-analyzer haskell-language-server LSP服务器
+
+# ---------- Python (pyright) ----------        # 分隔注释：下面是 Python 配置
+
+[language-server.pyright]             
+command = "pyright-langserver"                # 可执行文件名：pyright 的 LSP 服务端
+args = ["--stdio"]                            # 通过 stdio 协议与编辑器通信（标准方式）
+
+[language-server.pyright.config]              # pyright 的额外配置（传给语言服务器）
+python.analysis.autoSearchPaths = true        # 自动搜索常见的 import 路径
+python.analysis.useLibraryCodeForTypes = true # 从三方库源码推断类型（更智能，但可能更慢）
+python.analysis.diagnosticMode = "workspace"  # 诊断范围：整个工作区（项目）
+python.analysis.typeCheckingMode = "basic"    # 类型检查强度：basic（比 off 强，低于 strict）
+
+[[language]]                                  # 定义一种语言（数组元素）
+name = "python"                               # 语言名：python
+language-servers = ["pyright"]                # 这个语言用哪些 LSP：pyright
+roots = ["pyproject.toml", "uv.lock", ".git"] # 项目根的判断依据：uv/pyproject 或 git
+
+# formatter = { command = "ruff", args = ["format", "-"] } # 可选：用 ruff 格式化（需要你安装 ruff）
+
+# ---------- Rust (rust-analyzer) ----------    # 分隔注释：下面是 Rust 配置
+
+[language-server.rust-analyzer]               # 定义 rust-analyzer 语言服务器
+command = "rust-analyzer"                     # rust-analyzer 可执行文件名
+
+[language-server.rust-analyzer.config]        # rust-analyzer 的配置
+cargo.allFeatures = true                      # Cargo 构建/分析时启用所有 features
+check.command = "clippy"                      # 保存/检查时用 clippy（比 check 更严格）
+procMacro.enable = true                       # 启用 proc-macro（宏展开更完整）
+
+[[language]]                                  # 定义一种语言
+name = "rust"                                 # 语言名：rust
+language-servers = ["rust-analyzer"]          # Rust 使用 rust-analyzer
+roots = ["Cargo.toml", ".git"]                # 项目根：Cargo.toml 或 git
+
+# ---------- Haskell (HLS) ----------          # 分隔注释：下面是 Haskell 配置
+
+[language-server.hls]                         # 定义 Haskell Language Server
+command = "haskell-language-server-wrapper"   # HLS wrapper（会自动选合适版本）
+args = ["--lsp"]                              # 以 LSP 模式运行
+
+[[language]]                                  # 定义一种语言
+name = "haskell"                              # 语言名：haskell
+language-servers = ["hls"]                    # Haskell 使用 hls
+roots = ["stack.yaml", "cabal.project", "*.cabal", "hie.yaml", ".git"] # 常见 Haskell 项目根标志
+

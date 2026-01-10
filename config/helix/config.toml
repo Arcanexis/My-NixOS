@@ -1,0 +1,17 @@
+theme = "catppuccin_mocha"
+
+[editor]                              # Helix 编辑器全局设置
+auto-completion = true                # 开启自动补全（由 LSP/补全引擎提供）
+completion-trigger-len = 1            # 输入 1 个字符就触发补全
+completion-replace = true             # 选中补全项后替换当前词
+auto-format = true                    # 保存/格式化时自动格式化（若语言配置了 formatter 或 LSP 支持）
+idle-timeout = 50                     # 空闲多少毫秒后触发后台操作（如诊断/补全更新）
+true-color = true                     # 启用真彩色（24-bit color）
+
+[editor.lsp]                          # LSP（语言服务器）相关设置
+display-messages = true               # 显示 LSP 发来的提示/消息
+display-inlay-hints = true            # 显示内联提示（例如 Rust 的类型提示）
+
+[editor.inline-diagnostics]           # 行内诊断（错误/警告提示）显示方式
+cursor-line = "hint"                  # 光标所在行显示为 hint（更克制，不太吵）
+other-lines = "disable"               # 其它行不显示行内诊断（避免满屏红黄字）

@@ -114,7 +114,6 @@
 
   # 系统基础包
   environment.systemPackages = with pkgs; [
-  os-prober
   blueman
   tlp
   kitty

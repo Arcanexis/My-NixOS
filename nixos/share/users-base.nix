@@ -3,9 +3,6 @@
 
 {
   environment.systemPackages = with pkgs; [
-  helix
-  vim 
-  neovim
   appimage-run
   niri
   clash-verge-rev

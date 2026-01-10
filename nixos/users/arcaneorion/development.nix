@@ -7,6 +7,7 @@
     git
     
     # 编辑器 & IDE
+    helix
     vscode
     zed-editor #rust写的下一代代码编辑器
     antigravity #谷歌反重力编辑器
@@ -24,9 +25,8 @@
 
   # 开发环境变量
   home.sessionVariables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
-    GOPATH = "$HOME/go";
+    EDITOR = "hx";
+    VISUAL = "hx";
     NODE_ENV = "development";
   };
 
@@ -37,7 +37,7 @@
       user.name = "arcanexis";
       user.email = "3526162625@qq.com";
       init.defaultBranch = "main";
-      core.editor = "nvim";
+      core.editor = "hx";
       pull.rebase = false;
     };
   };

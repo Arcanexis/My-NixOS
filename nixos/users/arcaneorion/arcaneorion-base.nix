@@ -23,6 +23,9 @@
     libreoffice
     feishu 
     obsidian
+
+    #音乐
+    spotify  
  
     # 下载器
     motrix
