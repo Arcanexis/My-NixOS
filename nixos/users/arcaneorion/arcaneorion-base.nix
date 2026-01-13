@@ -14,6 +14,11 @@
      qq
      discord
 
+     # 数学软件
+     geogebra
+     wxmaxima
+     octave
+
      # 娱乐
      bilibili
     
