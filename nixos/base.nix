@@ -160,18 +160,7 @@
   virtualisation.docker = {
     enable = true;
   };
-
-  # 禁止 docker 开机自启 先手动启动clash
-  systemd.services.docker.wantedBy = lib.mkForce [];
-  systemd.sockets.docker.wantedBy = lib.mkForce [];
-
-  #设置docker网络代理
-  systemd.services.docker.serviceConfig.Environment = [
-  "HTTP_PROXY=http://127.0.0.1:7897"
-  "HTTPS_PROXY=http://127.0.0.1:7897"
-  "NO_PROXY=localhost,127.0.0.1,.local,/var/run/docker.sock"
-];
-
+  
   # 启动数据库
   services.postgresql = {
     enable = true;

@@ -3,6 +3,7 @@
 
 {
   environment.systemPackages = with pkgs; [
+  sing-box
   appimage-run
   niri
   clash-verge-rev
@@ -18,12 +19,10 @@
 
   # 启用 nix-ld（让下载的二进制文件能运行）
   programs.nix-ld.enable = true;
-
-  # 端口与你 Clash 配置文件中的端口一致,大部分应用都走代理
-  networking.proxy.default = "http://127.0.0.1:7897";
-  # 设置不走代理的地址 (防止系统服务连接本地失败)
-  networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
+  
+  boot.kernel.sysctl."net.ipv4.ip_forward" = 1; #允许 Linux 内核“转发网络包”,TUN模式
+  networking.firewall.checkReversePath = false; #关闭反向路径校验,TUN必须
+  
    # 完整的字体配置
   fonts = {
     enableDefaultPackages = true;
