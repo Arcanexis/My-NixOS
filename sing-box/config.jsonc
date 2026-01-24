@@ -1,0 +1,265 @@
+{
+  // 手动选择节点
+  //  =========================
+  // 日志设置
+  // =========================
+  // level: 日志级别
+  // - info: 常规信息
+  // - debug: 更详细，排查问题时可用
+  "log": {
+    "level": "info"
+  },
+
+  // =========================
+  // DNS 配置（域名解析）
+  // =========================
+  // 为什么要关心 DNS：
+  // - 打开网页时，首先要把域名解析成 IP
+  // - DNS 走错出口会导致解析慢、解析错、甚至被重置
+  "dns": {
+    // servers: DNS 服务器列表
+    // tag: 给这个 DNS 起的名字，后面 rules 会引用
+    // detour: 让这个 DNS 走哪个出站（direct / 代理）
+    "servers": [
+      {
+        // 国内 DNS，直连更快
+        "tag": "dns-direct",
+        "address": "udp://114.114.114.114",
+        "detour": "direct"
+      },
+      {
+        // 国外 DNS，走代理可以避免污染
+        "tag": "dns-proxy",
+        "address": "https://1.1.1.1/dns-query",
+        "detour": "美国 01"
+      }
+    ],
+
+    // rules: DNS 分流规则
+    // - 命中 geolocation-cn 的域名，用国内 DNS 直连解析
+    // - 你的节点域名也用直连解析（避免连接前就被代理）
+    "rules": [
+      {
+        "rule_set": [
+          "geolocation-cn"
+        ],
+        "server": "dns-direct"
+      },
+      {
+        "domain": [
+          "lmnode-ixd3fh2v5uqlv3z-lmus.lma1b2.com",
+          "lmnode-ixd3fh2v5uqlv3z-lmhk.lma1b2.com"
+        ],
+        "server": "dns-direct"
+      }
+    ],
+
+    // final: 兜底 DNS
+    // - 没命中规则的域名，统一用 dns-direct 解析
+    "final": "dns-direct"
+  },
+
+  // =========================
+  // 入站配置（应用流量如何进入 sing-box）
+  // =========================
+  "inbounds": [
+    {
+      // mixed: 同时支持 socks/http 代理
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 2080
+    },
+    {
+      // tun: 接管系统全局流量
+      // auto_route + strict_route: 让系统默认走 tun
+      "type": "tun",
+      "tag": "tun-in",
+      "address": "172.19.0.1/30",
+      "auto_route": true,
+      "strict_route": true,
+      // route_exclude_address: 这些 IP 不走 tun（避免 DNS 自己被劫持）
+      "route_exclude_address": [
+        // localhost / LAN / docker 等本地网络不走 tun，保证可访问本地服务
+        "127.0.0.0/8",
+        "::1/128",
+        "10.0.0.0/8",
+        "172.16.0.0/12",
+        "192.168.0.0/16",
+        "114.114.114.114/32",
+        "14.17.71.61/32",
+        "157.20.135.41/32",
+        "58.152.75.228/32"
+      ],
+      // stack: system 使用系统网络栈
+      "stack": "system",
+      // mtu: 小一点有助于稳定（走代理时常见）
+      "mtu": 1200,
+      // sniff: 嗅探 SNI/Host，提高分流准确度
+      "sniff": true
+    }
+  ],
+
+  // =========================
+  // 出站配置（流量最终从哪里出去）
+  // =========================
+  "outbounds": [
+    {
+      // selector: 手动选择节点
+      "type": "selector",
+      "tag": "节点选择",
+      "outbounds": [
+        "美国 01",
+        "香港 01",
+        "香港 02",
+        "香港 03",
+        "direct",
+        "block"
+      ]
+    },
+
+    // 节点配置（trojan）
+    {
+      "type": "trojan",
+      "tag": "美国 01",
+      "server": "lmnode-ixd3fh2v5uqlv3z-lmus.lma1b2.com",
+      "server_port": 53451,
+      "password": "b1cceed2-52fc-454e-8176-d2a81eefdc54",
+      "tls": {
+        "enabled": true,
+        // insecure=true 会跳过证书校验（安全性差，但有些节点必须这样）
+        "insecure": true
+      }
+    },
+    {
+      // direct: 直连出口
+      // 关键点：必须绑定真实网卡，否则会回到 tun0 形成环路
+      "type": "direct",
+      "tag": "direct",
+      "bind_interface": "wlp1s0"
+    },
+    {
+      // direct-local: 本机回环/本地服务直连，不绑定网卡（否则 127.0.0.1 会不可达）
+      "type": "direct",
+      "tag": "direct-local"
+    },
+    {
+      // block: 直接丢弃流量
+      "type": "block",
+      "tag": "block"
+    },
+    {
+      "type": "trojan",
+      "tag": "香港 01",
+      "server": "lmnode-ixd3fh2v5uqlv3z-lmhk.lma1b2.com",
+      "server_port": 53401,
+      "password": "b1cceed2-52fc-454e-8176-d2a81eefdc54",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "香港 02",
+      "server": "lmnode-ixd3fh2v5uqlv3z-lmhk.lma1b2.com",
+      "server_port": 53402,
+      "password": "b1cceed2-52fc-454e-8176-d2a81eefdc54",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "香港 03",
+      "server": "lmnode-ixd3fh2v5uqlv3z-lmhk.lma1b2.com",
+      "server_port": 53403,
+      "password": "b1cceed2-52fc-454e-8176-d2a81eefdc54",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    }
+  ],
+
+  // =========================
+  // 路由配置（决定哪些流量走哪个出站）
+  // =========================
+  "route": {
+    // 默认域名解析器
+    "default_domain_resolver": "dns-direct",
+
+    // 规则集：从远程拉取国内/国外域名列表
+    "rule_set": [
+      {
+        "tag": "geolocation-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/lyc8503/sing-box-rules/refs/heads/rule-set-geosite/geosite-geolocation-cn.srs",
+        // 规则下载走代理，避免直连 GitHub 失败
+        "download_detour": "美国 01"
+      },
+      {
+        "tag": "geolocation-!cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/lyc8503/sing-box-rules/refs/heads/rule-set-geosite/geosite-geolocation-!cn.srs",
+        "download_detour": "美国 01"
+      }
+    ],
+
+    // 具体分流规则（按顺序匹配）
+    "rules": [
+      {
+        // DNS 劫持：把系统的 53 端口请求交给 dns 模块
+        "network": "udp",
+        "port": 53,
+        "action": "hijack-dns"
+      },
+      {
+        "network": "tcp",
+        "port": 53,
+        "action": "hijack-dns"
+      },
+      {
+        // 所有私有地址（内网、docker 网段等）强制直连，避免被 bind_interface 的 direct 走错出口
+        "ip_is_private": true,
+        "outbound": "direct-local"
+      },
+      {
+        // 本机回环地址/localhost 永远直连，避免被 tun 兜底走代理导致访问本地服务异常
+        "ip_cidr": [
+          "127.0.0.0/8",
+          "::1/128",
+          "0.0.0.0/32"
+        ],
+        "outbound": "direct-local"
+      },
+      {
+        "domain": [
+          "localhost"
+        ],
+        "outbound": "direct-local"
+      },
+      {
+        // 国内域名走直连
+        "rule_set": [
+          "geolocation-cn"
+        ],
+        "outbound": "direct"
+      },
+      {
+        // 国外域名走节点选择
+        "rule_set": [
+          "geolocation-!cn"
+        ],
+        "outbound": "节点选择"
+      }
+    ],
+
+    // final: 没匹配到规则的流量走这里
+    // 这里用美国节点兜底
+    "final": "美国 01"
+  }
+}
